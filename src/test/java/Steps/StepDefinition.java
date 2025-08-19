@@ -1,6 +1,7 @@
 package Steps;
 
 import Utils.TakeScreenShots;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 
 
@@ -52,13 +53,22 @@ public class StepDefinition extends Base {
         takeScreenShots.takesSnapShot(driver, "Dashboard");
         loginpage.VerifyDashboardPage();
     }
+    @When("I click on the Documents Tab")
+    public void iClickOnTheDocumentsTab() {
+        loginpage.DocumentsTab();
+    }
 
 
     //-------------------------DOCUMENTS STEPS-----------------------------------
-    @Given("I am on the Documents Layout Page")
+
+
+
+    @Then("I am on the Documents Layout Page")
     public void i_am_on_the_documents_layout_page() {
         documentsPage.verifyDocumentLayout("Official Insurance Documents");
     }
+
+
 
     @When("I click on the Request Document button for Policy schedule")
     public void i_click_on_the_request_document_button_for_policy_schedule() {

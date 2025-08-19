@@ -1,6 +1,7 @@
 package Pages;
 
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,14 +38,20 @@ public class DocumentsPage {
     WebElement homePage_xpath;
 
 
+
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
     public void verifyDocumentLayout(String actualText) {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(visibilityOf(documentLayout_xpath));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(documentLayout_xpath));
         actualText = documentLayout_xpath.getText();
         Assert.assertEquals(actualText, "Official Insurance Documents");
     }
 
-    public void clickRequestPolicyScheduleButton() {
+    public void clickRequestPolicyScheduleButton() {new WebDriverWait(driver, Duration.ofSeconds(10)).until(visibilityOf(requestPolicyScheduleButton_xpath));
+        scrollToElement(requestPolicyScheduleButton_xpath);
         requestPolicyScheduleButton_xpath.click();
     }
 

@@ -42,6 +42,9 @@ public class LoginPage {
     @FindBy(xpath = "//div[contains(text(),'Monthly payment date')]")
     WebElement Dashboard_xpath;
 
+    @FindBy(xpath = "//*[@id='documents']/span[2]")
+    WebElement clickDocumentsTab_xpath;
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -86,7 +89,12 @@ public class LoginPage {
     }
 
     public void VerifyDashboardPage() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(Dashboard_xpath));
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(Dashboard_xpath));
         Dashboard_xpath.isDisplayed();
+    }
+
+    public void DocumentsTab() {
+        //new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(clickDocumentsTab_xpath));
+        clickDocumentsTab_xpath.click();
     }
 }
